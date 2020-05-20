@@ -1,5 +1,5 @@
 # main blockchain
-blockchain = []
+BLOCKCHAIN = []
 
 
 def get_sha256(string) -> str:
@@ -12,12 +12,12 @@ def get_sha256(string) -> str:
 
 
 def addBlockToBlockchain(block):
-    if len(blockchain) == 0:
+    if len(BLOCKCHAIN) == 0:
         # make genesis block (first block of blockchain)
         block['hash'] = get_sha256(block)
     else:
         # get last block in blockchain
-        last_block = blockchain[len(blockchain) - 1]
+        last_block = BLOCKCHAIN[len(BLOCKCHAIN) - 1]
 
         # vinculate the hash block with last hash block
         block['hash'] = last_block['hash']
@@ -25,7 +25,7 @@ def addBlockToBlockchain(block):
         # get hash of block
         block['hash'] = get_sha256(block)
 
-    blockchain.append(block)
+    BLOCKCHAIN.append(block)
 
 
 # block
@@ -99,7 +99,7 @@ addBlockToBlockchain(block_3)
 
 # SHOW THE BLOCKS
 position = 1
-for block in blockchain:
+for block in BLOCKCHAIN:
     print(f'\nBlock #{position}: {block["hash"]}')
     for transaction in block['transations']:
         print('')
